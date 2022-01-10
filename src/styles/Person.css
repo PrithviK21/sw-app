@@ -1,0 +1,60 @@
+.person-cont {
+  min-height: calc(100vh - var(--nav-height) - 10px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1em;
+  background-color: var(--darkgrey);
+  width: 90%;
+  margin: auto;
+}
+
+.person-info {
+  text-align: center;
+}
+
+.person-info > p {
+  /* display: flex; */
+  padding: 1em;
+}
+.person-img {
+  position: relative;
+  overflow: hidden;
+  max-width: 33vw;
+}
+.person-img > img {
+  position: relative;
+  border-radius: 10px;
+  margin: 1em;
+}
+
+@media screen and (max-width: 768px) {
+  .person-cont {
+    flex-direction: column;
+  }
+}
+.info-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1em;
+  margin-block: 1rem;
+}
+.info-box-item {
+  background-color: var(--grey);
+  padding: 1em;
+  /* border: 1px var(--eggwhite) solid; */
+  border-radius: 10px;
+}
+hr {
+  margin-block: 0.3em;
+}
+
+.info {
+  color: var(--eggwhite);
+}
+
+.info-name {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}

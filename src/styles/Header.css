@@ -1,0 +1,60 @@
+.nav {
+  position: relative;
+  font-family: "Star Jedi";
+  font-size: 3em;
+  height: var(--nav-height);
+  letter-spacing: 0.05em;
+  background-color: var(--grey);
+  z-index: 2;
+  border-bottom: var(--alt-yellow) solid 1px;
+  overflow-y: visible;
+}
+.nav span {
+  position: relative;
+  overflow-x: hidden;
+}
+.nav-toggle {
+  position: absolute;
+  right: 5%;
+  top: calc(50% - 24px);
+  transition: 0.2s ease;
+}
+.nav-toggle:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.nav-links {
+  /* display: none; */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: -1;
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  line-height: 2em;
+  background-color: var(--grey);
+  padding: 1rem 2rem;
+  border-radius: 0 0 0 50px;
+  border-left: var(--alt-yellow) solid 1px;
+  border-bottom: var(--alt-yellow) solid 1px;
+  transition: 0.5s ease;
+  transform: translateX(35vh);
+}
+
+.visible {
+  display: block;
+  transform: translateX(0);
+  z-index: -1;
+}
+
+.nav-links li {
+  list-style: none;
+  border-radius: 10px;
+  padding: 0 0.5em;
+}
+
+.nav-links li:hover,
+.nav-links a:focus-within {
+  background-color: var(--lightgrey);
+}

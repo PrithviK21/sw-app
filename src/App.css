@@ -4,12 +4,15 @@
   --alt-yellow: #ffe919;
   --lightgrey: #393e46;
   --grey: #222831;
+  --darkgrey: #191d24;
   --eggwhite: #eeeeee;
+  --nav-height: 78px;
 }
 
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .sw-text {
@@ -18,92 +21,16 @@
 }
 body {
   background-color: var(--lightgrey);
+  /* background-color: black; */
   color: var(--yellow);
   font-family: "Poppins";
   text-align: center;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 a:visited {
   color: inherit;
-}
-.nav {
-  position: relative;
-  font-family: "Star Jedi";
-  font-size: 3em;
-  letter-spacing: 0.05em;
-  background-color: var(--grey);
-  z-index: 2;
-  border-bottom: var(--alt-yellow) solid 1px;
-}
-.nav-toggle {
-  position: absolute;
-  right: 5%;
-  top: calc(50% - 24px);
-  transition: 0.2s ease;
-}
-.nav-toggle:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
-.nav-links {
-  display: none;
-  position: absolute;
-  right: 0;
-  /* transition: 1s ease; */
-  z-index: -1;
-  font-family: "Poppins";
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  line-height: 2em;
-  background-color: var(--grey);
-  padding: 1rem 2rem;
-  border-radius: 0 0 0 50px;
-  border-left: var(--alt-yellow) solid 1px;
-  border-bottom: var(--alt-yellow) solid 1px;
-}
-
-.visible {
-  display: block;
-  /* animation: slide 0.5s ease; */
-  z-index: -1;
-}
-
-.nav-links li {
-  list-style: none;
-  border-radius: 10px;
-  padding: 0 0.5em;
-}
-
-.nav-links li:hover,
-.nav-links a:focus-within {
-  background-color: var(--lightgrey);
-}
-
-@keyframes slide {
-  from {
-    transform: translateX(20vh);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.info > * {
-  width: 100%;
-}
-
-.info > :last-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
