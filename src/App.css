@@ -6,6 +6,7 @@
   --grey: #222831;
   --darkgrey: #191d24;
   --eggwhite: #eeeeee;
+  --textgrey: rgb(202, 202, 202);
   --nav-height: 78px;
 }
 
@@ -13,6 +14,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  /* white-space: pre-line; */
 }
 
 .sw-text {

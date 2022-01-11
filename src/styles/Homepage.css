@@ -31,6 +31,27 @@
   opacity: 1;
   animation: landing 10s ease forwards;
 }
+.saber-arrow {
+  position: absolute;
+  top: 10%;
+  height: 30vh;
+  right: -1%;
+  animation: bounce 1.2s ease infinite 3s;
+  opacity: 0.5;
+  transform: translateY(-100vh);
+  transition: 1s ease;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 @keyframes opening {
   80% {
     opacity: 0;
