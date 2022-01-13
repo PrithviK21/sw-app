@@ -23,6 +23,24 @@
   cursor: pointer;
   transform: scale(1.1);
 }
+.nav > button {
+  position: absolute;
+  left: 2%;
+  top: 30%;
+  padding: 0.5em;
+  border: 2px var(--yellow) solid;
+  border-radius: 20px;
+  font-family: "Poppins";
+  font-weight: bold;
+  background: transparent;
+  color: var(--yellow);
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.nav > button:hover {
+  transform: scale(1.1);
+}
+
 .nav-links {
   /* display: none; */
   position: absolute;

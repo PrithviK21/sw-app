@@ -10,6 +10,10 @@
   --nav-height: 78px;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +26,9 @@
   letter-spacing: 0.1em;
 }
 body {
-  background-color: var(--lightgrey);
+  background: url(./assets/sw-bg.jpg) repeat-y;
+  background-size: 100vw;
+  /* background-color: var(--lightgrey); */
   /* background-color: black; */
   color: var(--yellow);
   font-family: "Poppins";
@@ -35,4 +41,19 @@ a {
 }
 a:visited {
   color: inherit;
+}
+
+.e404-btn {
+  font-family: "Star Jedi";
+  background-color: var(--darkgrey);
+  border: 1px var(--yellow) solid;
+  padding: 0.5em;
+  border-radius: 20px;
+  transition: 1s ease;
+}
+
+.e404-btn:hover {
+  background-color: var(--grey);
+  color: red;
+  border: 1px solid red;
 }

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
-import "../styles/Person.css";
+import { useState, useEffect } from "react";
+import "../styles/Entity.css";
 import { ship1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import InfoBoxRow from "../components/InfoBoxRow";
 import InfoBoxItem from "../components/InfoBoxItem";
-function Starship() {
-  return (
+function Starship({ currentIndex, apidata }) {
+  const [data, setData] = useState(undefined);
+  useEffect(() => setData(apidata[0]), [apidata]);
+  useEffect(() => {
+    // console.log(`current page ${currentIndex}`);
+    // console.log(totalData);
+    //console.log("Data " + data);
+    setData(apidata ? apidata[currentIndex] : null);
+  }, [currentIndex]);
+  return data ? (
     <div className="entity-cont">
       <div className="entity-img">
         <img
@@ -22,18 +31,18 @@ function Starship() {
           <InfoBoxItem name="Cost" value={data.cost_in_credits} />
           <InfoBoxItem name="Length" value={data.length} />
           <InfoBoxItem name="Crew" value={data.crew} />
-          <InfoBoxItem name="Class" value={data.starship_class} />
         </InfoBoxRow>
         <InfoBoxRow>
+          <InfoBoxItem name="Class" value={data.starship_class} />
           <InfoBoxItem name="Cargo Capacity" value={data.cargo_capacity} />
-          <InfoBoxItem name="Passengers" value={data.passengers} />
+          <InfoBoxItem name="Capacity" value={data.passengers} />
         </InfoBoxRow>
         <InfoBoxRow>
           <InfoBoxItem name="Films" value={data.films} />
         </InfoBoxRow>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Starship;

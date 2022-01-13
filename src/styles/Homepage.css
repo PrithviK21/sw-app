@@ -30,16 +30,20 @@
   font-size: 2em;
   opacity: 1;
   animation: landing 10s ease forwards;
+  margin: 1em;
 }
 .saber-arrow {
   position: absolute;
   top: 10%;
   height: 30vh;
-  right: -1%;
+  right: -20px;
   animation: bounce 1.2s ease infinite 3s;
   opacity: 0.5;
   transform: translateY(-100vh);
   transition: 1s ease;
+}
+.red-arrow {
+  filter: hue-rotate(-80deg);
 }
 @keyframes bounce {
   0% {
@@ -72,7 +76,11 @@
     opacity: 1;
   }
 }
-
+@media (max-width: 1000px) {
+  .saber-arrow {
+    display: none;
+  }
+}
 /* CATEGORIES CSS */
 
 .categories {

@@ -1,3 +1,4 @@
+// Hero component with Star Wars opening crawl and fading in text
 function Hero() {
   return (
     <div className="hero">
@@ -10,7 +11,7 @@ function Hero() {
         <h1>
           Welcome to the <span className="sw-text">Cantina</span>
         </h1>
-        <p>Use this as a resource to learn more about Star Wars</p>
+        <p>Use this as a resource to learn obscure Star Wars details</p>
       </div>
     </div>
   );

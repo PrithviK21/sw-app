@@ -2,13 +2,32 @@ import menuIcon from "../assets/menu.png";
 import "../styles/Header.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 function Header() {
   const [toggled, setToggled] = useState(false);
-
+  const [changedColor, setChangedColor] = useState(false);
+  const toggleColors = () => {
+    if (changedColor) {
+      document.documentElement.style.setProperty("--yellow", "#ffd369");
+      document.documentElement.style.setProperty("--alt-yellow", "#ffe919");
+    } else {
+      document.documentElement.style.setProperty("--yellow", "#ce0000");
+      document.documentElement.style.setProperty("--alt-yellow", "#d03434");
+    }
+    try {
+      document.querySelector(".saber-arrow").classList.toggle("red-arrow");
+    } catch (e) {
+      console.log("NOT ON HOMEPAGE");
+    }
+    setChangedColor(!changedColor);
+  };
   return (
     <header className="nav">
+      <button onClick={toggleColors}>
+        {changedColor ? "Dark Side" : "Light Side"}
+      </button>
       <Link to="/">Cantina</Link>
-      <img
+      <GiHamburgerMenu
         className="nav-toggle"
         src={menuIcon}
         onClick={() => setToggled(!toggled)}

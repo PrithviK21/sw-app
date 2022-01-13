@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
-import "../styles/Person.css";
-import { species2 as data } from "../TESTDATA.js"; //can use any Person schema data
+import { useState, useEffect } from "react";
+import "../styles/Entity.css";
+import { species1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import InfoBoxRow from "../components/InfoBoxRow";
 import InfoBoxItem from "../components/InfoBoxItem";
-function Species() {
-  return (
+function Species({ currentIndex, apidata }) {
+  const [data, setData] = useState(undefined);
+  useEffect(() => setData(apidata[0]), [apidata]);
+  useEffect(() => {
+    // console.log(`current page ${currentIndex}`);
+    // console.log(totalData);
+    //console.log("Data " + data);
+    setData(apidata ? apidata[currentIndex] : null);
+  }, [currentIndex]);
+  return data ? (
     <div className="entity-cont">
       <div className="entity-img">
         <img
@@ -19,7 +28,7 @@ function Species() {
           <InfoBoxItem
             name="Avg. Height"
             value={
-              data.average_height + (data.average_height == "n/a" ? "" : "cm")
+              data.average_height + (data.average_height === "n/a" ? "" : "cm")
             }
           />
           <InfoBoxItem
@@ -41,7 +50,7 @@ function Species() {
         </InfoBoxRow>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Species;

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
-import "../styles/Person.css";
-import { planet1 as data } from "../TESTDATA.js"; //can use any Person schema data
+import { useState, useEffect } from "react";
+import "../styles/Entity.css";
+// import { planet1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import InfoBoxRow from "../components/InfoBoxRow";
 import InfoBoxItem from "../components/InfoBoxItem";
-function Planet() {
-  return (
+function Planet({ currentIndex, apidata }) {
+  const [data, setData] = useState(undefined);
+  useEffect(() => setData(apidata[0]), [apidata]);
+  useEffect(() => {
+    // console.log(`current page ${currentIndex}`);
+    // console.log(totalData);
+    //console.log("Data " + data);
+    setData(apidata ? apidata[currentIndex] : null);
+  }, [currentIndex]);
+  return data ? (
     <div className="entity-cont">
       <div className="entity-img">
         <img
@@ -32,7 +41,7 @@ function Planet() {
         </InfoBoxRow>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Planet;

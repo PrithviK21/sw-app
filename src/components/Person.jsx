@@ -1,17 +1,29 @@
-import { Link } from "react-router-dom";
-import "../styles/Person.css";
-import { person1 as data } from "../TESTDATA.js"; //can use any Person schema data
+import { useEffect, useState, useContext } from "react";
+import "../styles/Entity.css";
+// import { person1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import InfoBoxRow from "./InfoBoxRow";
 import InfoBoxItem from "./InfoBoxItem";
-function Person() {
-  return (
+function Person({ currentIndex, apidata }) {
+  // console.log(apidata);
+  const [data, setData] = useState(undefined);
+
+  useEffect(() => setData(apidata[0]), [apidata]);
+  useEffect(() => {
+    // console.log(`current page ${currentIndex}`);
+    // console.log(totalData);
+    //console.log("Data " + data);
+    setData(apidata ? apidata[currentIndex] : null);
+  }, [currentIndex]);
+  return data ? (
     <div className="entity-cont">
       <div className="entity-img">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
-          alt="Person goes here"
-        />
-        <h1 className="entity-name">{data.name}</h1>
+        <div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
+            alt="Person goes here"
+          />
+          <h1 className="entity-name">{data.name}</h1>
+        </div>
       </div>
       <div className="entity-info">
         <InfoBoxRow>
@@ -31,7 +43,7 @@ function Person() {
         </InfoBoxRow>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Person;
