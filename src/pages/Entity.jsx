@@ -24,6 +24,7 @@ function Entity({ page }) {
   }, [page]);
 
   useEffect(() => {
+    setcurrentIndex(0);
     setData(null);
     dataService.getAPIData(page, currAPIPage).then((result) => {
       setData(result);
