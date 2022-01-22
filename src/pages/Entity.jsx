@@ -15,7 +15,13 @@ function Entity({ page }) {
   const [currAPIPage, setcurrAPIPage] = useState(1);
   // This is the service that returns data
   const dataService = useContext(dataServiceContext);
-
+  // function to search for entity on wookieepedia
+  const onNameClick = (query) => {
+    window.open(
+      `https://starwars.fandom.com/wiki/Special:Search?query=${query}`,
+      "_blank"
+    );
+  };
   // Resets the data on new Entity. Also fetches new data
   // from API as fetched data only contains 10 entries
   useEffect(() => {
@@ -34,29 +40,70 @@ function Entity({ page }) {
   // Changes the api page when reaching end of current data in order to fetch new data
   // This change in api page is caught in the above UseEffect which enables data-fetching
   useEffect(() => {
-    if (currentIndex == 10) {
+    if (currentIndex === 10) {
       setcurrAPIPage(currAPIPage + 1);
     } else if (data && currentIndex >= data.length) {
       setcurrAPIPage(1);
       setcurrentIndex(0);
     }
+    if (data && currentIndex === 0 && currAPIPage > 1) {
+      setcurrAPIPage(currAPIPage - 1);
+      // setcurrentIndex(data.length - 1);
+    }
+    //TODO: Add functionality to go back
   }, [currentIndex]);
   // Allows you to render different pages based on input prop. Did this way
   // to code the fetching action efficiently
   let switchboi = (key) => {
     switch (key) {
       case "people":
-        return <Person currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Person
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       case "planets":
-        return <Planet currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Planet
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       case "films":
-        return <Film currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Film
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       case "vehicles":
-        return <Vehicle currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Vehicle
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       case "starships":
-        return <Starship currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Starship
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       case "species":
-        return <Species currentIndex={currentIndex} apidata={data} />;
+        return (
+          <Species
+            currentIndex={currentIndex}
+            apidata={data}
+            onNameClick={onNameClick}
+          />
+        );
       default:
         return null;
     }
@@ -68,12 +115,22 @@ function Entity({ page }) {
     </div>
   ) : (
     <div className="aids">
+      {/* the next line renders the page-intro only if we are on the first API page */}
+      {currAPIPage == 1 && (
+        <div className="page-intro sw-text">
+          <h1>{page}</h1>
+        </div>
+      )}
       <div className="entity-wrapper" style={{ width: "100%" }}>
         <div
           className="arrow-btn"
-          onClick={() =>
-            currentIndex === 0 ? 0 : setcurrentIndex(currentIndex - 1)
-          }
+          onClick={() => {
+            if (currAPIPage > 1 && currentIndex === 0) {
+              setcurrAPIPage(currAPIPage - 1);
+            } else if (currentIndex > 0) {
+              setcurrentIndex(currentIndex - 1);
+            }
+          }}
         >
           <AiFillCaretLeft />
         </div>

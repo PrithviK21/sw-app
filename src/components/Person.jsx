@@ -1,28 +1,47 @@
 import { useEffect, useState, useContext } from "react";
 import "../styles/Entity.css";
 // import { person1 as data } from "../TESTDATA.js"; //can use any Person schema data
+import { IoMdOpen } from "react-icons/io";
 import InfoBoxRow from "./InfoBoxRow";
 import InfoBoxItem from "./InfoBoxItem";
-function Person({ currentIndex, apidata }) {
-  // console.log(apidata);
-  const [data, setData] = useState(undefined);
+import { dataServiceContext } from "../services/GetData";
 
-  useEffect(() => setData(apidata[0]), [apidata]);
+function Person({ currentIndex, apidata, onNameClick }) {
+  // console.log(apidata);
+  // data holds the current page's data
+  const [data, setData] = useState(undefined);
+  // homeworld holds the current entity's homeworld, fetched from the api link
+  const [homeWorld, setHomeWorld] = useState("");
+  // pulling in the dataservice from context to access API and film map
+  const dataService = useContext(dataServiceContext);
+  const filmMap = dataService.filmMap;
+  // helper function, can be replaced with arrow func in [data] callback
+  const updateHomeworld = () => {
+    data &&
+      dataService
+        .getHomeworld(data.homeworld)
+        .then((result) => setHomeWorld(result));
+  };
+  // updates the homeworld whenever the data changes
+  useEffect(() => updateHomeworld(), [data]);
   useEffect(() => {
-    // console.log(`current page ${currentIndex}`);
-    // console.log(totalData);
-    //console.log("Data " + data);
+    setData(apidata[0]);
+  }, [apidata]);
+  useEffect(() => {
     setData(apidata ? apidata[currentIndex] : null);
   }, [currentIndex]);
+
   return data ? (
     <div className="entity-cont">
       <div className="entity-img">
         <div>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
-            alt="Person goes here"
-          />
-          <h1 className="entity-name">{data.name}</h1>
+          <h1 className="entity-name" onClick={() => onNameClick(data.name)}>
+            {data.name}{" "}
+            <div className="tooltip">
+              Click to search on wookieepedia
+              <IoMdOpen />
+            </div>
+          </h1>
         </div>
       </div>
       <div className="entity-info">
@@ -36,10 +55,13 @@ function Person({ currentIndex, apidata }) {
           <InfoBoxItem name="Birth Year" value={data.birth_year} />
         </InfoBoxRow>
         <InfoBoxRow>
-          <InfoBoxItem name="Homeworld" value={data.homeworld} />
+          <InfoBoxItem name="Homeworld" value={homeWorld} />
         </InfoBoxRow>
         <InfoBoxRow>
-          <InfoBoxItem name="Films" value={data.films} />
+          <InfoBoxItem
+            name="Films"
+            value={data.films.map((item) => filmMap[item])}
+          />
         </InfoBoxRow>
       </div>
     </div>

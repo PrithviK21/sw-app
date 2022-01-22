@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap");
 :root {
   --yellow: #ffd369;
   --alt-yellow: #ffe919;
@@ -56,4 +56,10 @@ a:visited {
   background-color: var(--grey);
   color: red;
   border: 1px solid red;
+}
+
+@media (max-width: 900px) {
+  .e404-btn {
+    font-size: 1.2rem;
+  }
 }

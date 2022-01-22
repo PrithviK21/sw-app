@@ -50,7 +50,7 @@
 
 .entity-img {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   max-width: 33vw;
   max-height: calc(100vh - var(--nav-height) - 10px);
 }
@@ -65,24 +65,79 @@
   max-height: 60vh;
 }
 .entity-name {
-  margin-block: 1em;
+  position: relative;
+  margin: 1rem;
+  text-transform: lowercase;
+  font-family: "Star Jedi";
+  letter-spacing: 0.1em;
+  font-size: max(1.5em, 3vw);
+  overflow: visible;
+  transition: 0.5s ease;
+  animation: name-highlight ease infinite 2s forwards;
 }
-@media screen and (max-width: 768px) {
-  .entity-cont {
-    flex-direction: column;
+.entity-name:hover {
+  cursor: pointer;
+  /* font-family: "Star Jedi Hollow"; */
+  transform: scale(1.1) skew(-3deg);
+  animation: none;
+}
+
+@keyframes name-highlight {
+  0% {
   }
-  .entity-info {
-    max-width: fit-content;
+  50% {
+    /* transform: translateY(10px); */
+    /* opacity: 0.5; */
   }
-  .entity-img {
-    max-width: fit-content;
+  100% {
+    /* transform: translateY(0); */
   }
+}
+
+.tooltip {
+  position: relative;
+  /* visibility: hidden; */
+  opacity: 1;
+  /* width: 120px; */
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 1rem;
+  letter-spacing: normal;
+  font-weight: 300;
+  font-family: "Poppins";
+  /* Position the tooltip text - see examples below! */
+  z-index: 1;
+  transition: 0.5s ease;
+}
+.tooltip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+.tooltip {
+  opacity: 1;
+  /* font-size: 0.7rem; */
+  padding: 0.5em 1em;
+  /* width: 240px; */
+  position: relative;
+  top: 0;
+  margin: 0;
+  left: 0;
+}
+.tooltip svg {
+  margin: 0 10px;
 }
 .info-box {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap;
   gap: 1em;
   margin-block: 1rem;
 }
@@ -100,13 +155,92 @@
 hr {
   margin-block: 0.3em;
 }
-
 .info {
-  /* color: var(--eggwhite); */
   color: var(--textgrey);
 }
-
+.info-lists {
+  /* color: var(--eggwhite); */
+  color: var(--textgrey);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.info-lists p {
+  padding: 0.5em;
+  border-bottom: 1px solid rgba(256, 256, 256, 0.5);
+  /* border-radius: 10px; */
+}
 .info-name {
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.page-intro {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  /* background: url(../assets/loop-warp.gif) no-repeat; */
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: page-intro-fade ease 2s 1s forwards;
+  overflow: hidden;
+}
+
+.page-intro h1 {
+  font-size: min(5em, 5vw);
+}
+@keyframes page-intro-fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200vh);
+    /* transform: scale(0); */
+    visibility: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .entity-cont {
+    flex-direction: column;
+  }
+  .entity-info {
+    max-width: fit-content;
+    margin-top: 0;
+  }
+  .entity-img {
+    max-width: fit-content;
+  }
+  .info-box {
+    flex-wrap: wrap;
+  }
+  .arrow-btn {
+    align-items: flex-start;
+  }
+  .arrow-btn > svg {
+    margin-top: 5em;
+  }
+  .entity-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: none;
+  }
+
+  .tooltip {
+    opacity: 1;
+    font-size: 0.7rem;
+    padding: 0.5em 1em;
+    width: 240px;
+    position: relative;
+    top: 0;
+    margin: 0;
+    left: 0;
+  }
+  .tooltip::after {
+    display: none;
+  }
 }

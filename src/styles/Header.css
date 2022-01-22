@@ -1,7 +1,7 @@
 .nav {
   position: relative;
   font-family: "Star Jedi";
-  font-size: 3em;
+  font-size: min(3em, 5vw);
   height: var(--nav-height);
   letter-spacing: 0.05em;
   background-color: var(--grey);
@@ -76,4 +76,19 @@
 .nav-links li:hover,
 .nav-links a:focus-within {
   background-color: var(--lightgrey);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-toggle {
+    top: calc(50% - 15px);
+  }
+  .nav > button {
+    font-size: 0.7rem;
+  }
 }

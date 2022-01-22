@@ -1,13 +1,13 @@
 function InfoBoxItem({ name, value }) {
   return (
     <div className="info-box-item">
-      {/* Checks if the passed value is a list, if so, renders a list box */}
-      {Array.isArray(value) ? (
-        <div className="info">
+      {/* Checks if the passed value is a list with more than one value, if so, renders a list box */}
+      {Array.isArray(value) && value.length > 1 ? (
+        <div className={`info-lists`}>
           {value.map((item) => (
             <>
-              <a href={item}>{item}</a>
-              <hr />
+              <p>{item}</p>
+              {/* <hr /> */}
             </>
           ))}
         </div>

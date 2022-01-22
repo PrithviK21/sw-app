@@ -3,7 +3,7 @@ function Hero() {
   return (
     <div className="hero">
       <div className="scrawl">
-        <p className="sw-text">Star Wars</p>
+        <p className="sw-text">star wars</p>
         <p>using ReactJS and SWAPI</p>
         <p>By Prithvi K</p>
       </div>
