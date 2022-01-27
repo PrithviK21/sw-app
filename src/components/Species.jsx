@@ -1,11 +1,10 @@
-import { IoMdOpen } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import "../styles/Entity.css";
-import { species1 as data } from "../TESTDATA.js"; //can use any Person schema data
+// import { species1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import { dataServiceContext } from "../services/GetData";
-import InfoBoxRow from "../components/InfoBoxRow";
-import InfoBoxItem from "../components/InfoBoxItem";
+import InfoBoxRow from "./InfoBoxRow";
+import InfoBoxItem from "./InfoBoxItem";
+import Tooltip from "./Tooltip";
 function Species({ currentIndex, apidata, onNameClick }) {
   const [data, setData] = useState(undefined);
   const [homeWorld, setHomeWorld] = useState("");
@@ -30,10 +29,7 @@ function Species({ currentIndex, apidata, onNameClick }) {
       <div className="entity-img">
         <h1 className="entity-name" onClick={() => onNameClick(data.name)}>
           {data.name}
-          <div className="tooltip">
-            Click to search on wookieepedia
-            <IoMdOpen />
-          </div>
+          <Tooltip />
         </h1>
       </div>
       <div className="entity-info">

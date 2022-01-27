@@ -1,8 +1,8 @@
-import { IoMdOpen } from "react-icons/io";
 import "../styles/Entity.css";
 // import { film1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import { useState, useEffect } from "react";
 import InfoBoxRow from "../components/InfoBoxRow";
+import Tooltip from "./Tooltip";
 import InfoBoxItem from "../components/InfoBoxItem";
 function Film({ currentIndex, apidata, onNameClick }) {
   const [data, setData] = useState(undefined);
@@ -15,10 +15,7 @@ function Film({ currentIndex, apidata, onNameClick }) {
       <div className="entity-img">
         <h1 className="entity-name" onClick={() => onNameClick(data.title)}>
           {data.title}
-          <div className="tooltip">
-            Click to search on wookieepedia
-            <IoMdOpen />
-          </div>
+          <Tooltip />
         </h1>
       </div>
       <div className="entity-info">

@@ -4,7 +4,7 @@ import Film from "../components/Film";
 import Vehicle from "../components/Vehicle";
 import Starship from "../components/Starship";
 import Species from "../components/Species";
-import { CircleLoader, MoonLoader } from "react-spinners";
+import { MoonLoader } from "react-spinners";
 import { useState, useEffect, useContext } from "react";
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { dataServiceContext } from "../services/GetData";
@@ -116,7 +116,7 @@ function Entity({ page }) {
   ) : (
     <div className="aids">
       {/* the next line renders the page-intro only if we are on the first API page */}
-      {currAPIPage == 1 && (
+      {currAPIPage === 1 && (
         <div className="page-intro sw-text">
           <h1>{page}</h1>
         </div>

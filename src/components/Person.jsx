@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import "../styles/Entity.css";
 // import { person1 as data } from "../TESTDATA.js"; //can use any Person schema data
-import { IoMdOpen } from "react-icons/io";
 import InfoBoxRow from "./InfoBoxRow";
 import InfoBoxItem from "./InfoBoxItem";
 import { dataServiceContext } from "../services/GetData";
+import Tooltip from "./Tooltip";
 
 function Person({ currentIndex, apidata, onNameClick }) {
   // console.log(apidata);
@@ -36,11 +36,7 @@ function Person({ currentIndex, apidata, onNameClick }) {
       <div className="entity-img">
         <div>
           <h1 className="entity-name" onClick={() => onNameClick(data.name)}>
-            {data.name}{" "}
-            <div className="tooltip">
-              Click to search on wookieepedia
-              <IoMdOpen />
-            </div>
+            {data.name} <Tooltip />
           </h1>
         </div>
       </div>

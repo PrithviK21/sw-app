@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { IoMdOpen } from "react-icons/io";
 import "../styles/Entity.css";
 // import { planet1 as data } from "../TESTDATA.js"; //can use any Person schema data
 import { dataServiceContext } from "../services/GetData";
 import InfoBoxRow from "../components/InfoBoxRow";
+import Tooltip from "./Tooltip";
 import InfoBoxItem from "../components/InfoBoxItem";
 function Planet({ currentIndex, apidata, onNameClick }) {
   const [data, setData] = useState(undefined);
@@ -18,10 +17,7 @@ function Planet({ currentIndex, apidata, onNameClick }) {
       <div className="entity-img">
         <h1 className="entity-name" onClick={() => onNameClick(data.name)}>
           {data.name}
-          <div className="tooltip">
-            Click to search on wookieepedia
-            <IoMdOpen />
-          </div>
+          <Tooltip />
         </h1>
       </div>
       <div className="entity-info">

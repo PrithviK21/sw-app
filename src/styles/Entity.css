@@ -189,7 +189,7 @@ hr {
 }
 
 .page-intro h1 {
-  font-size: min(5em, 5vw);
+  font-size: 5em;
 }
 @keyframes page-intro-fade {
   0% {
@@ -242,5 +242,8 @@ hr {
   }
   .tooltip::after {
     display: none;
+  }
+  .page-intro > h1 {
+    font-size: 3em;
   }
 }

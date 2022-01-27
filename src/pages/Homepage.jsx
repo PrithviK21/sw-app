@@ -16,6 +16,7 @@ function Homepage() {
         className="saber-arrow"
         src={saberimg}
         onClick={(e) => tempOpacity(e)}
+        alt="Yellow lightsabre pointing to dropdown"
       />
       {/* <Categories /> */}
     </div>

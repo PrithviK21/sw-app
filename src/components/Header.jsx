@@ -39,6 +39,7 @@ function Header() {
         <DropdownItem name="Species" url="/species" />
         <DropdownItem name="Vehicles" url="/vehicle" />
         <DropdownItem name="Starships" url="/starship" />
+        <DropdownItem name="About" url="/about" />
       </Dropdown>
     </header>
   );

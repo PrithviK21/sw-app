@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import axios from "axios";
 
 export const dataServiceContext = createContext(undefined);
