@@ -56,7 +56,7 @@ function Person({ currentIndex, apidata, onNameClick }) {
         <InfoBoxRow>
           <InfoBoxItem
             name="Films"
-            value={data.films.map((item) => filmMap[item])}
+            value={data.films.map((item) => filmMap[item.at(-2)])}
           />
         </InfoBoxRow>
       </div>

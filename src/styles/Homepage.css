@@ -151,10 +151,25 @@
   opacity: 1;
 }
 
+.cantfunc-text {
+  width: 80%;
+  margin: 4em auto 0 auto;
+  line-height: 2em;
+  white-space: pre-line;
+  background-color: var(--darkgrey);
+  padding: 1.5em;
+  border: 3px var(--red) solid;
+  color: var(--alt-red);
+}
+
 @media (max-width: 900px) {
   .categories {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+  }
+  .cantfunc-text {
+    line-height: 1.5em;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 600px) {

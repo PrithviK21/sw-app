@@ -1,21 +1,41 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import CannotFunction from "../pages/CannotFunction";
 export const dataServiceContext = createContext(undefined);
 
-const baseUrl = "https://swapi.py4e.com/api";
-// provides a map for films. Hardcoded as there are only 7 films, saves on api calls.
-const filmUrl = "https://swapi.py4e.com/api/films/";
+var baseUrl = "https://swapi.py4e.com/api";
+
 const filmMap = {
-  [filmUrl + "1/"]: "A New Hope",
-  [filmUrl + "2/"]: "Empire Strikes Back",
-  [filmUrl + "3/"]: "Return of the Jedi",
-  [filmUrl + "4/"]: "The Phantom Menace",
-  [filmUrl + "5/"]: "Attack of the Clones",
-  [filmUrl + "6/"]: "Revenge of the Sith",
-  [filmUrl + "7/"]: "The Force Awakens",
+  1: "A New Hope",
+  2: "Empire Strikes Back",
+  3: "Return of the Jedi",
+  4: "The Phantom Menace",
+  5: "Attack of the Clones",
+  6: "Revenge of the Sith",
+  7: "The Force Awakens",
 };
+// provides a map for films. Hardcoded as there are only 7 films, saves on api calls.
 function GetData({ children }) {
+  const [canFunction, setCanFunction] = useState(true);
+  useEffect(() => {
+    const checkAPIStatus = async () => {
+      try {
+        const response = await axios.get(baseUrl);
+      } catch (error) {
+        console.log("PY4e is down, attempting to use swapi.dev");
+        baseUrl = "https://swapi.dev/api";
+        try {
+          const response = await axios.get(baseUrl);
+          console.log("Success, site will use SWAPI.dev");
+        } catch (e) {
+          console.log("SWAPI is down as well, site cannot function");
+          setCanFunction(false);
+        }
+      }
+    };
+    checkAPIStatus();
+  }, []);
+
   const dataService = {
     // this func returns an entire page of data, with a max of 10 returned entities
     async getAPIData(category, page = 1) {
@@ -33,7 +53,7 @@ function GetData({ children }) {
 
   return (
     <dataServiceContext.Provider value={dataService}>
-      {children}
+      {canFunction ? children : <CannotFunction />}
     </dataServiceContext.Provider>
   );
 }
